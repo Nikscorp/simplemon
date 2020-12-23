@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple monitoring
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/srv/simplemon/simplemon -c /srv/simplemon/simplemon-conf.yml
+
+[Install]
+WantedBy=multi-user.target

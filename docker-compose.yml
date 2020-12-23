@@ -1,0 +1,21 @@
+version: '3'
+services:
+  simplemon_builder:
+    build: &default_dockerfile
+      context: .
+      dockerfile: Dockerfile
+    container_name: simplemon_builder
+    logging: &default_logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    volumes:
+      - ./artifacts:/artifacts
+    command: cp /srv/simplemon /artifacts/
+  simplemon_runner:
+    build: *default_dockerfile
+    container_name: simplemon_runner
+    logging: *default_logging
+    volumes:
+      - ./conf/simplemon-conf.yml:/etc/simplemon/simplemon.yaml

@@ -1,0 +1,27 @@
+telegram:
+  token: ...
+  recipients:
+    - id1
+    - id2
+  fail_confidence: 2
+  success_confidence: 1
+  enabled: true
+tasks:
+  - id: one
+    description: Some meaningful description 1
+    command: curl https://www.google.com/
+    cwdir: /tmp/
+    frequency_sec: 60
+    notify:
+      telegram: true
+      influxdb: true
+    fail_confidence: 3
+    success_confidence: 2
+  - id: two
+    description: Some even more meaningful description 2
+    command: nmap google.com -p 22
+    cwdir: /tmp/
+    frequency_sec: 60
+    notify:
+      telegram: true
+      influxdb: true
